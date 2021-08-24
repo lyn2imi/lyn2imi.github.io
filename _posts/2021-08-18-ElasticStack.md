@@ -1,3 +1,15 @@
+---
+title: Elastic Stack
+
+toc: true
+toc_sticky: true
+
+categories:
+  - devops  
+tags:
+  - elastic
+---
+
 # Elastic Stack 구조
 
 ## 1. Elastic Stack
@@ -149,24 +161,28 @@
 
 ## 3. Elastic Search 설치 및 Data 처리
   - Java 8 이상 필요(https://www.elastic.co/kr/support/matrix#matrix_jvm)
-    ```JAVASCRIPT
+
+    ```bash
     # java -version
     java version "1.8.0_231"
     Java(TM) SE Runtime Environment (build 1.8.0_231-b11)
     Java HotSpot(TM) Client VM (build 25.231-b11, mixed mode)
     ```
   - Elastic Search Download(with Linux & gz.tar)
-    ```JAVASCRIPT
+
+    ```bash
     # wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.1-linux-x86_64.tar.gz
     # tar -xzf elasticsearch-7.4.1-linux-x86_64.tar.gz
     ```
   - Elastic Search 실행
-    ```JAVASCRIPT
+
+    ```bash
     # cd elasticsearch-7.4.1/
     # ./bin/elasticsearch
     ```
   - Elastic Search 실행 확인
-    ```JAVASCRIPT
+
+    ```java
     # curl -XGET http://localhost:9200/
     {
       "name" : "localhost",
@@ -187,20 +203,24 @@
     }
     ```
   - Elastic Search Daemon 실행 방법
-    ```JAVASCRIPT
+
+    ```bash
     # ./bin/elasticsearch -d -p pid
     ```
+    
   - Elastic Search 종료
-    ```JAVASCRIPT
+
+    ```bash
     # kill {pid}
     ```
 
   - Data Insert 
     - Insert Query
-    ```JAVASCRIPT
+
+    ```java
     # curl -XPOST http://localhost:9200/books/book/1 -d '{
     "tile": "ElasticSearch Test",
-    "Name": "epkim",
+    "Name": "lyn2imi",
     "date": "2019-10-31",
     "pages": 250
     }'
@@ -209,10 +229,10 @@
     ```
     - Elasticsearch 6.0 이후 버전에 도입된 엄격한 content-type 확인으로 인해서 추가해야 함
 
-    ```JAVASCRIPT
+    ```java
     # curl -XPOST http://localhost:9200/books/book/1 -H 'Content-Type: application/json' -d '{
     "tile": "ElasticSearch Test",
-    "Name": "epkim",
+    "Name": "lyn2imi",
     "date": "2019-10-31",
     "pages": 250
     }'
@@ -221,12 +241,14 @@
     ```
   - 데이터 Delete
     - Delete Query (Document)
-    ```JAVASCRIPT
+
+    ```java
     # curl -XDELETE http://localhost:9200/books/book/1
     {"_index":"books","_type":"book","_id":"1","_version":1,"result":"deleted","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":1,"_primary_term":1}
     ```
     - Delete 확인(Document)
-    ```JAVASCRIPT
+
+    ```java
     # curl -XGET http://localhost:9200/books/book/1?pretty
     {
       "_index" : "books",
@@ -240,17 +262,20 @@
       - Document단위로 데이터를 삭제하더라도 Document의 Metadata는 여전히 남아있음 
       - Index 단위로 삭제하는 경우 Metadata까지 모두 삭제
       - 실제로 삭제되는 것이 아니라 Document의 _source에 입력된 데이터 값을 Empty값으로 업데이트되고 검색되지 않게 상태 변경
-    ```JAVASCRIPT
+
+    ```java
     # curl -XPOST http://localhost:9200/books/book/1 -H 'Content-Type: application/json' -d '{
     "tile": "ElasticSearch Test",
-    "Name": "epkim",
+    "Name": "lyn2imi",
     "date": "2019-10-31",
     "pages": 250
     }'
     {"_index":"books","_type":"book","_id":"1","_version":2,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":4,"_primary_term":1}
     ```
+
     - Index 단위 삭제 후 URL로 접근하면 404반환
-    ```JAVASCRIPT
+
+    ```java
     # curl -XDELETE http://localhost:9200/books/
     {"acknowledged":true}
 
@@ -281,27 +306,27 @@
     - _update API는 Document의 구조를 변경하는 것이 아님
     - 기존의 저장된 Document 값을 읽어 입력한 명령을 토대로 새로 변경된 Document 내용을 만들고 입력하는 방식
 
-    ```JAVASCRIPT
+    ```java
     # curl -XPOST http://localhost:9200/books/book/1 -H 'Content-Type: application/json' -d '{
     "tile": "ElasticSearch Test",
-    "Name": "epkim",
+    "Name": "lyn2imi",
     "date": "2019-10-31",
     "pages": 250
     }'
  
     {"_index":"books","_type":"book","_id":"1","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":0,"_primary_term":1}
     ```
-    ```JAVASCRIPT
+    ```java
     # curl -XPOST http://localhost:9200/books/book/1/_update -H 'Content-Type: application/json' -d '{
     "doc": {
-      "company": "Interpark"
+      "company": "company"
      }
     }'
 
     {"_index":"books","_type":"book","_id":"1","_version":2,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":1,"_primary_term":1}
     ```
 
-    ```JAVASCRIPT
+    ```java
     # curl -XGET http://localhost:9200/books/book/1?pretty
     {
       "_index" : "books",
@@ -313,13 +338,14 @@
       "found" : true,
       "_source" : {
         "tile" : "ElasticSearch Test",
-        "Name" : "epkim",
+        "Name" : "lyn2imi",
         "date" : "2019-10-31",
         "pages" : 250,
-        "company" : "Interpark"
+        "company" : "company"
       }
     }
     ```
+
   - 파일을 통한 데이터 처리
     - --data-binary @파일명
     - 입력할 데이터를 모아 한꺼번에 처리하므로 데이터를 각각 처리하고 결과를 반환할 때보다 속도가 매우 빠름
@@ -329,7 +355,8 @@
     - 통상적으로 1000~5000개 정도의 작업이 바람직, 10000개 이상의 작업을 배치로 실행하면 오류가 발생할 확률이 높음
     
     - Bulk 파일 생성
-    ```JAVASCRIPT
+
+    ```java
     # vi bulk_test.sql
     { "index" : { "_index" : "bulk_test", "_type" : "_doc", "_id" : "1" } }
     { "field1" : "value1" }
@@ -340,13 +367,15 @@
     { "doc" : {"field2" : "value2"} }
     ```
     - Bulk 파일 일 Insert
-    ```JAVASCRIPT
+
+    ```java
     # curl -XPOST http://10.20.83.146:9200/_bulk --data-binary @./bulk_test.sql -H 'Content-Type: application/json'
 
     {"took":762,"errors":false,"items":[{"index":{"_index":"bulk_test","_type":"_doc","_id":"1","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":0,"_primary_term":1,"status":201}},{"delete":{"_index":"bulk_test","_type":"_doc","_id":"2","_version":1,"result":"not_found","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":1,"_primary_term":1,"status":404}},{"create":{"_index":"bulk_test","_type":"_doc","_id":"3","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":2,"_primary_term":1,"status":201}},{"update":{"_index":"bulk_test","_type":"_doc","_id":"1","_version":2,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":3,"_primary_term":1,"status":200}}]}
     ```
     - bulk_test INDEX 에 Data 확인
-    ```JAVASCRIPT
+
+    ```java
     # curl -XGET http://10.20.83.146:9200/bulk_test/_doc/1?pretty
     {
       "_index" : "bulk_test",
@@ -362,7 +391,8 @@
       }
     }
     ```
-    ```JAVASCRIPT
+
+    ```java
     # curl -XGET http://10.20.83.146:9200/bulk_test/_doc/2?pretty
     {
       "_index" : "bulk_test",
@@ -371,7 +401,8 @@
       "found" : false
     }
     ```
-    ```JAVASCRIPT
+
+    ```java
     # curl -XGET http://10.20.83.146:9200/bulk_test/_doc/3?pretty
     {
       "_index" : "bulk_test",
@@ -425,7 +456,8 @@
      * 노드 중 하나에 장애가 발생하더라도 여전히 나머지 두 개로 안전하게 쿼럼을 형성하고 계속 진행할 수 있습니다. 클러스터에 마스터 적격 노드가 3개 미만인 경우, 이 중 하나의 손실도 허용될 수 없습니다. 이와 반대로 클러스터에 마스터 적격 노드가 3개보다 훨씬 많은 경우, 선출과 클러스터 상태 업데이트에 시간이 더 걸릴 수 있습니다.
 
   - Coordinate Node Config
-    ```JAVASCRIPT
+
+    ```yml
     cluster.name: elastic_clu
     node.name: kibana-1
     node.master: false
@@ -459,7 +491,8 @@
     cluster.initial_master_nodes : Cluster 시작 시 명시된 노드들을 마스터 노드로 선출    
     ```
   - Master Node Config
-    ```JAVASCRIPT
+
+    ```yml
     -  Master-1
     
     cluster.name: elastic_clu
@@ -499,7 +532,8 @@
     ```
 
   - Data Node Config
-    ```JAVASCRIPT
+
+    ```yml
     - Data-1
     
     cluster.name: elastic_clu
@@ -555,7 +589,7 @@
     cluster.initial_master_nodes: ["Master-1","Master-2"]
     ```
 
-    ```JAVASCRIPT
+    ```yml
     - Kibana-1
     
     server.port: 7601
@@ -587,7 +621,8 @@
           5. 스냅샷으로 데이터를 백업
         - Upgrade 실행
           1. Upgrade Node의 Shard 할당 비할성화
-          ```JAVASCRIPT
+
+          ```java
           PUT _cluster/settings
           {
             "persistent": {
@@ -596,14 +631,16 @@
           }
           ```
           2. 불필요한 색인 생성을 중지하고 동기화 된 플러시를 수행
-          ```JAVASCRIPT
+
+          ```java
           POST _flush/synced
           ```
           3. Node 종료
           4. Node Upgrade
           5. Plug-in Upgrade
           6. Shard 할당 활성화
-          ```JAVASCRIPT
+
+          ```java
           PUT _cluster/settings
           {
             "persistent": {
@@ -612,7 +649,8 @@
           }
           ````
           7. Node가 정상화 될때까지 대기
-          ```JAVASCRIPT
+
+          ```java
           GET _cat/health?v
           
           GET _cat/recovery
@@ -684,7 +722,8 @@
       - 강제 병합 작업은 Index를 최적화 하는데 사용 할수 있음(https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-forcemerge-action)
       - 고정 작업은 Cluster의 메모리 부담을 줄이는데 사용(https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-freeze-action)
   - ILM 기본 정책:
-      ```JAVASCRIPT
+
+      ```java
       PUT /_ilm/policy/my_policy
       {
         "policy":{
@@ -705,7 +744,8 @@
     - 위 정책은 30일 후 또는 Index의 크기가 50gb 에 도달 하면(기본 Shard를 기준) Index를 rollover 하고새 Index에 쓰기 시작한다는 설정
 
   - ILM 및 Index template
-      ```JAVASCRIPT
+
+      ```java
       PUT _template/my_template
       {
         "index_patterns": ["test-*"], 
@@ -718,7 +758,8 @@
       - 위 ILM 정책을 Index template에 연결 해야 함
       - rollover 작업을 사용 할때는 ILM 정책을 Index에 직접 지정하는 것이 아니라 Index template에 지정 해야 함,
       - rollover 작업이 포함된 정책의 경우, Index template을 생성한 후 쓰기 별칭으로 Index를 Bootstrap 해야 함
-      ```JAVASCRIPT
+
+      ```java
       PUT test-000001 
       {
         "aliases": {
@@ -731,7 +772,8 @@
       - test-*로 시작하는 모든 새 Index가 30일후 또는 50GB에 도달한 후 자동으로 rollover 됨
       - max_size가 포함된 rollover 관리형 Index를 사용하면 Index의 Shard 수를 크게 줄일수 있음
   - hot-warm-cold에 맞게 ILM 정책 최적화
-      ```JAVASCRIPT
+
+      ```java
       PUT _ilm/policy/hot-warm-cold-delete-60days
       {
         "policy": {
@@ -819,13 +861,14 @@
 
           - Beats 및 Logstash에서 ILM 활성화
             - Beats 설정
-            ```JAVASCRIPT
+
+            ```java
             output.elasticsearch:
             ilm.enabled: true
             ```
             - Logstash 설정
 
-            ```JAVASCRIPT
+            ```java
             output {
               elasticsearch {  
                 ilm_enabled => true
@@ -899,7 +942,8 @@
 
 ## 9. _cat 활용하기
   - allocation : Node 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET /_cat/allocation/<node_name>
       GET /_cat/allocation
       shards disk.indices disk.used disk.avail disk.total disk.percent host           ip          node
@@ -908,7 +952,8 @@
       193      995.2gb     2.9tb     51.6tb     54.5tb            5  elastic02    1.1.1.42   elastic02
     ```
   - shards : 각 Index의 Shard 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET /_cat/shards/<index>
       GET /_cat/shards
       index                             shard prirep state       docs    store ip          node
@@ -924,13 +969,15 @@
       weblog-iis-2019.11.26             0     r      STARTED  4596736    2.3gb 1.1.1.42 elastic02
     ```
   - master : Master Node 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET /_cat/master
       id                     host           ip          node
       8lHyX_fjSAmVvhtz3HY8WQ prod-elastic01 172.27.1.41 prod-elastic01
     ```
   - nodes : 각 Node 의 성능 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/nodes
           ip          heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
       172.27.1.41           32          99   5    2.59    2.68     3.00       dilm      *   elastic01
@@ -940,7 +987,8 @@
       172.27.1.42           30          99   2    5.64    5.46     4.92       dilm      -   elastic02
     ```      
   - tasks : 실행 중인 작업 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/tasks
           action                         task_id                          parent_task_id                   type      start_time    timestamp running_time ip          node
       indices:data/write/bulk        7I6_9sjLQOSOyvvXCKjoyg:227148846 -                                transport 1575271854423 07:30:54  308.1ms      1.1.1.42 elastic02
@@ -950,35 +998,39 @@
     ```
 
   - pending_tasks : Pending된 작업 정보
-    ```JAVASCRIPT
+
+    ```javascript
      GET pending_tasks
      insertOrder timeInQueue priority source
     ```
 
   - indices : Index 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/indeces
       GET _cat/indices/{index}
       health status index                             uuid                   pri rep docs.count docs.deleted store.size pri.store.size
-      green  open   weblog-shop-2019.12.01            wh-o8EJ_RU-gn-s9Fqt-pg   5   1   10825189            0     19.4gb          9.7gb
-      green  open   weblog-shop-2019.12.02            2tsxm5opQl2s4tX0cydQpQ   5   1    4814560            0     10.5gb          5.2gb
-      green  open   webtob-message-2019.11.22         SgQWiRRCSCCk4ETJNW3kXQ   1   1   50878090            0     59.6gb         29.8gb
-      green  open   webtob-message-2019.11.23         _X-aMZA8Rvi1oXAVKOvtrw   1   1   50187183            0       59gb         29.5gb
-      green  open   webtob-message-2019.11.20         fotkZswKT9mkjvt3FfiItQ   1   1   52849597            0     62.8gb         31.4gb
-      green  open   webtob-message-2019.11.21         28KEVPnlSEmrGLKQkjW2pA   1   1   51782045            0     61.8gb         30.9gb
+      green  open   weblog-2019.12.01            wh-o8EJ_RU-gn-s9Fqt-pg   5   1   10825189            0     19.4gb          9.7gb
+      green  open   weblog-2019.12.02            2tsxm5opQl2s4tX0cydQpQ   5   1    4814560            0     10.5gb          5.2gb
+      green  open   weblog-message-2019.11.22         SgQWiRRCSCCk4ETJNW3kXQ   1   1   50878090            0     59.6gb         29.8gb
+      green  open   weblog-message-2019.11.23         _X-aMZA8Rvi1oXAVKOvtrw   1   1   50187183            0       59gb         29.5gb
+      green  open   weblog-message-2019.11.20         fotkZswKT9mkjvt3FfiItQ   1   1   52849597            0     62.8gb         31.4gb
+      green  open   weblog-message-2019.11.21         28KEVPnlSEmrGLKQkjW2pA   1   1   51782045            0     61.8gb         30.9gb
     ```
 
   - segments : segments 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/segments
       GET _cat/segments/{index}
             index                    shard prirep        ip      segment generation docs.count docs.deleted     size size.memory committed searchable version compound
-      weblog-shop-2019.12.01            0     r      172.27.1.41 _3avi       154062          7            0   29.2kb       20310 true      true       8.2.0   true
-      weblog-shop-2019.12.01            0     p      172.27.1.43 _nxj         31015     219698            0  194.9mb      110597 true      true       8.2.0   false
-      weblog-shop-2019.12.01            0     p      172.27.1.43 _1dxx        64725     465716            0  422.3mb      215129 true      true       8.2.0   false
+      weblog-2019.12.01            0     r      172.27.1.41 _3avi       154062          7            0   29.2kb       20310 true      true       8.2.0   true
+      weblog-2019.12.01            0     p      172.27.1.43 _nxj         31015     219698            0  194.9mb      110597 true      true       8.2.0   false
+      weblog-2019.12.01            0     p      172.27.1.43 _1dxx        64725     465716            0  422.3mb      215129 true      true       8.2.0   false
     ```
   - count : Docdument 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/count
       GET _cat/count/{index}
       epoch      timestamp count
@@ -986,21 +1038,24 @@
     ```
 
   - recovery : 복구 관련 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/recovery
       GET _cat/recovery/{index}
       index                     shard time  type   stage source_host    source_node    target_host    target_node    repository snapshot files files_recovered files_percent files_total bytes       bytes_recovered bytes_percent bytes_total translog_ops translog_ops_recovered translog_ops_percent
-      weblog-shop-2019.12.01        0        1.6s  peer     done         elastic03      elastic03       elastic01     elastic01 n/a        n/a      1     1      100.0%        1           230         230             100.0%        230         27           27
+      weblog-2019.12.01        0        1.6s  peer     done         elastic03      elastic03       elastic01     elastic01 n/a        n/a      1     1      100.0%        1           230         230             100.0%        230         27           27
     ```
   - health : Cluster 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/health
       epoch     timestamp cluster   status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
      1575273657 08:00:57  log-total green           5         3    770 385    0    0        0             0                  -                100.0%
     ```
 
   - aliases : aliases Index 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/aliases
       GET _cat/aliases/{alias}
       alias                index                  filter routing.index routing.search is_write_index
@@ -1009,7 +1064,8 @@
     ```
   
   - thread_pool : 각 Node 의 Thread Pool 사용 통계 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/thread_pool
       GET _cat/thread_pool/{thread_pools}
       node_name      name                active queue rejected
@@ -1038,13 +1094,15 @@
       elastic01 write                    7     0       76
       ```
   - plugins : Plugins 정보
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/plugins
       name component version
     ```
   
   - fielddata : fielddata에서 사용된 Heap Memory 양 
-    ```JAVASCRIPT
+
+    ```javascript
       GET _cat/fielddata
       GET _cat/fielddata/{fields}
           id                     host     ip       node           field                   size
@@ -1071,7 +1129,8 @@
       8lHyX_fjSAmVvhtz3HY8WQ elastic01 1.1.1.41 elastic01 shard.node                        0b
     ```
    - nodeattrs : 사용자 정의된 Node 속성 의 정보
-     ```JAVASCRIPT
+
+     ```javascript
        GET _cat/nodeattrs
           node     host       ip          attr              value
        elastic01 elastic01 1.1.1.41 ml.machine_memory 67258183680
@@ -1082,13 +1141,15 @@
        kibana01  kibana01  1.1.1.31 xpack.installed   true
      ```
    - repositories : Cluster 의 snapshot repositories 정보
-     ```JAVASCRIPT
+
+     ```javascript
        GET _cat/snapshots/{repository}
        id type
      ```
 
    - templates : templates 정보
-     ```JAVASCRIPT
+
+     ```javascript
         GET _cat/template
              name                        index_patterns        order      version
        .monitoring-es              [.monitoring-es-7-*]          0          7000199
@@ -1099,7 +1160,8 @@
 ## 10. Elastic Search, Kibana rolling Upgrade (Ver. 7.0.0 -> 7.4.2)
   - Upgrade 실행
     1. Upgrade Node의 Shard 할당 비할성화
-      ```JAVASCRIPT
+
+      ```javascript
       PUT _cluster/settings
       {
         "persistent": {
@@ -1109,22 +1171,26 @@
       ```
       
     2. 불필요한 색인 생성을 중지하고 동기화 된 플러시를 수행
-      ```JAVASCRIPT
+
+      ```javascript
       POST _flush/synced
       ```
   
     3. Node 종료
-      ```JAVASCRIPT
+
+      ```bash
       # systemctl stop elasticsearch
       ```
   
     4. Node Upgrade
-      ```JAVASCRIPT
-      # yum upgrade elasticsearch 
+
+      ```bash
+      # yum bash elasticsearch 
       ```
   
     5. elasticsearch.yml 파일 수정
-      ```JAVASCRIPT
+
+      ```javascript
       * Version Upgrade 로 일부 Option 변경 됨
       - discovery.zen.ping.unicast.hosts => discovery.seed_hosts
       - discovery.zen.minimum_master_nodes => 없어짐
@@ -1132,7 +1198,8 @@
       ```
   
     6. Node 시작
-      ```JAVASCRIPT
+
+      ```bash
       # systemctl start elasticsearch
   
       * Mem Lock 설정을 (systemctl 등록시) /usr/lib/systemd/system/elasticsearch.service 내 아래 내용 추가
@@ -1144,7 +1211,8 @@
       ```
 
     7. Shard 할당 활성화
-      ```JAVASCRIPT
+
+      ```javascript
       PUT _cluster/settings
       {
         "persistent": {
@@ -1154,7 +1222,8 @@
       ````
   
     8. Node가 정상화 될때까지 대기
-      ```JAVASCRIPT
+
+      ```javascript
       GET _cat/health?v
       
       GET _cat/recovery
@@ -1168,7 +1237,8 @@
     10. Kibana Request Cluster 를 위한 Coordinate 적용
     
     11. Kibana Upgrade
-      ```JAVASCRIPT
+
+      ```javascript
       - Coordinate Node 로 server.host 변경
       
       * Version Upgrade 에 따른 Config 변화 없음
