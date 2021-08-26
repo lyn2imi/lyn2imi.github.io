@@ -106,7 +106,7 @@ tags:
         - name : Key Copy
         authorized_key :
             user: testuser
-            key: "{{ lookup('file', '/root' + '/.ssh/id_rsa_pub') }}"
+            key: "{ lookup('file', '/root' + '/.ssh/id_rsa_pub') }"
   ```
 
 #### 기타 참고 URL : 
