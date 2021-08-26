@@ -72,6 +72,6 @@ tags:
     ```bash
       # export MINIO_CACHE_DRIVES="/data00"
       # export MINIO_CACHE_EXPIRY=90
-      # export MINIO_CACHE_EXCLUDE="*.zip;*.gz;*.tar;minio44/backup/*"
+      # export MINIO_CACHE_EXCLUDE="*.zip;*.gz;*.tar;minio/backup/*"
       # minio server /data{1...8}
     ```
