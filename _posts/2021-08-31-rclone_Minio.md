@@ -316,6 +316,39 @@ tags:
     --bwlimit          : 데이터의 Bandwidth 설정 (--bwlimit 10M 또는 --bwlimit UP:DOWN )
     위에서 부터 filter-from 은 파일에 문법이 있어서 제외할 파일 추가할파일 .. 옵션 선언하고
   ```
+
+- F/S Mount
+  - Minio Bucket 을 Linux FileSystem 으로 Mount
+  ```bash
+    # mkdir /root/minio_test
+    # rclone mount minio:/gitlabbackup/ /root/minio_test/
+  ```
+  - Mount 확인
+  ```bash
+    # df -h /root/minio_test
+    Filesystem               Size  Used Avail Use% Mounted on
+    minio:gitlabbackup  1.0P     0  1.0P   0% /root/minio_test 
+
+    # ls -l /root/minio_test 
+    -rw-r--r-- 1 root root  0  8월 28 00:00 minio_test-2021-08-28.txt
+    -rw-r--r-- 1 root root 13  8월 31 18:05 minio_test-2021-08-29.txt
+    -rw-r--r-- 1 root root  0  8월 30 00:00 minio_test-2021-08-30.txt
+    -rw-r--r-- 1 root root  0  8월 31 00:00 minio_test-2021-08-31.txt
+  ```
+  **연결 종료후 비정상적으로 Umount 안된 경우 아래 명령어로 Umount**
+  - Error 내용
+  ```bash
+    # ll /root/minio_test 
+    ls: cannot access /root/minio_test : 전송 종료지점이 연결되어 있지 않습니다
+  ```
+  - 강제 Umount 
+  ```bash
+    # umount -l /root/minio_test
+ 
+    * -l 옵션 : 지연된 언마운트(lazy umount) 
+      지연된 언마운트(lazy umount)는 디바이스가 사용되지 않을 때까지 대기한 후에 디렉토리 트리로부터 파일시스템을 언마운트한다.
+  ```
+
 - 참고 URL : https://rclone.org/
     - 옵션 : https://rclone.org/docs/
     - 필터 : https://rclone.org/filtering/
