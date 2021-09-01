@@ -8,7 +8,6 @@ categories:
   - devops  
 tags:
   - grafana
-  - Cluster
 ---
 
 # Grafana 고가용성(HA/Cluster) 구성

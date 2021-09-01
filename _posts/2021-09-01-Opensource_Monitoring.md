@@ -7,7 +7,6 @@ toc_sticky: true
 categories:
   - devops  
 tags:
-  - Opensource
   - Monitoring
   - Grafana
   - Influxdb

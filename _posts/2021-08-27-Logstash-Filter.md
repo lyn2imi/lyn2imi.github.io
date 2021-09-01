@@ -7,9 +7,7 @@ toc_sticky: true
 categories:
   - devops  
 tags:
-  - elastic
-  - logstash
-  - ruby
+  - ElasticStack
 ---
 - Last Update : 2021-08-27
 
