@@ -14,7 +14,7 @@ tags:
   - Fluntbit
 ---
 
-# AWS EKS Log 수집 및 및 S3/ELK 구성
+# AWS EKS Log 수집 및 S3/ELK 구성
 
 ![aws_eks_monitoring_1](/images/aws_eks_monitoring/aws_eks_monitoring_1.png)
 
