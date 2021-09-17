@@ -11,7 +11,7 @@ tags:
 ---
 
 ## minIO 서버의 성능향상을 위한 Linux Kernel 설정
-- 참고 URL : https://min.io/resources/docs/CPG-MinIO-implementation-guide.pdf
+- 참고 URL : [https://min.io/resources/docs/CPG-MinIO-implementation-guide.pdf](https://min.io/resources/docs/CPG-MinIO-implementation-guide.pdf)
 - /etc/sysctl.conf 설정 변경
 
   ```ini

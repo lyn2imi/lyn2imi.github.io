@@ -16,9 +16,9 @@ tags:
 ### erasure code 통한 데이터 보호
 - 노드/디스크 오류 등 문제 발생 으로 부터 데이터 보호를 위하여 Erasure Code 적용(최소 구성 디스크 4개)
 - Easure Code Calculator를 통하여 사용 용량, 장애 보호 가능 노드 등 확인
-  - https://min.io/product/erasure-code-calculator
+  - [https://min.io/product/erasure-code-calculator](https://min.io/product/erasure-code-calculator)
 - Erasure code sizing guide
-  - https://github.com/minio/minio/blob/master/docs/distributed/SIZING.md
+  - [https://github.com/minio/minio/blob/master/docs/distributed/SIZING.md]https://github.com/minio/minio/blob/master/docs/distributed/SIZING.md
 
 ### 노드 분산을 통한 고가용성
 - 단독 노드의 경우 서버 다운시 정상적인 서비스가 불가능
@@ -202,8 +202,8 @@ tags:
   ```
 
 - 참고 URL : 
-  - Minio Cluster : https://docs.min.io/docs/distributed-minio-quickstart-guide.html
-  - Nginx Proxy : https://docs.min.io/docs/setup-nginx-proxy-with-minio.html
+  - Minio Cluster : [https://docs.min.io/docs/distributed-minio-quickstart-guide.html](https://docs.min.io/docs/distributed-minio-quickstart-guide.html)
+  - Nginx Proxy : [https://docs.min.io/docs/setup-nginx-proxy-with-minio.html](https://docs.min.io/docs/setup-nginx-proxy-with-minio.html)
 
 - 구성시 고려 사항
   - All the nodes running distributed MinIO need to have same access key and secret key for the nodes to connect. To achieve this, it is recommended to export access key and secret key as environment variables, MINIO_ACCESS_KEY and MINIO_SECRET_KEY, on all the nodes before executing MinIO server command.

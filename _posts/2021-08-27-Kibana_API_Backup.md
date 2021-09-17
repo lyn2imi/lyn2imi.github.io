@@ -17,7 +17,7 @@ tags:
 ### Kibana Space 백업 구성
 - Kibana Space 또는 대시보드의 잘못된 수정 / 삭제를 대비 하여 백업 구성
 - Kibana 에서 기본 재공 해주는 API 를 이용한 백업
-  - 참고 URL : https://www.elastic.co/guide/en/kibana/master/saved-objects-api.html
+  - 참고 URL : [https://www.elastic.co/guide/en/kibana/master/saved-objects-api.html](https://www.elastic.co/guide/en/kibana/master/saved-objects-api.html)
 
 ### 백업 스크립트 구성
 - 백업 받는 타입 정보

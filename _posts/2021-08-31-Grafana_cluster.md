@@ -270,5 +270,5 @@ tags:
   ![grafana_cluster3](/images/Grafana_cluster/grafana_cluster3.png)
 
 - 참고 URL : 
-  - https://grafana.com/docs/grafana/latest/administration/set-up-for-high-availability/
-  - https://grafana.com/docs/grafana/latest/administration/configuration/
+  - [https://grafana.com/docs/grafana/latest/administration/set-up-for-high-availability/](https://grafana.com/docs/grafana/latest/administration/set-up-for-high-availability/)
+  - [https://grafana.com/docs/grafana/latest/administration/configuration/](https://grafana.com/docs/grafana/latest/administration/configuration/)

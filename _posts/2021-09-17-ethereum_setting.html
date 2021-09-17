@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2021-09-17-ethereum_setting.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EB%A5%BC-%EA%B5%AC%EC%B6%95-%EB%B0%8F-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81">이더리움 네트워크를 구축 및 모니터링</h1>
+<h3 id="%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80%EC%9D%B4%EB%9E%80">이더리움이란</h3>
+<ul>
+<li>
+<p>스마트 계약을 실행할 수 있는 플랫폼</p>
+</li>
+<li>
+<p>블록 체인 기수을 기반으로 스마트 계약 기능을 구현하기 위한 분산 컴퓨팅 플랫폼이자 운영체제</p>
+<pre class="hljs"><code><div>- 블록 체인 : 
+관리 대상 데이터를 '블록'이라고 하는 소규모 데이터들이 P2P 방식을 기반으로 생성된 체인 형태의 
+연결고리 기반 분산 데이터 저장 환경에 저장하여 누구라도 임의로 수정할 수 없고 
+누구나 변경의 결과를 열람할 수 있는 분산 컴퓨팅 기술 기반의 원장 관리 기술
+</div></code></pre>
+</li>
+<li>
+<p>이더리움 클라이언트 종류</p>
+<table>
+<thead>
+<tr>
+<th>클라이언트</th>
+<th>언어</th>
+<th>개발자</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>go-ethereum</td>
+<td>Go</td>
+<td>Ethereum Foundation</td>
+</tr>
+<tr>
+<td>Parity</td>
+<td>Rust</td>
+<td>Ethcore</td>
+</tr>
+<tr>
+<td>cpp-ethereum</td>
+<td>C++</td>
+<td>Ethereum Foundation</td>
+</tr>
+<tr>
+<td>pyethapp</td>
+<td>Python</td>
+<td>Ethereum Foundation</td>
+</tr>
+<tr>
+<td>etherumjs-lib</td>
+<td>JavaScript</td>
+<td>Ethereum Foundation</td>
+</tr>
+<tr>
+<td>Ethereum(J)</td>
+<td>Java</td>
+<td>&lt;ether.camp&gt;</td>
+</tr>
+<tr>
+<td>ruby-ethereum</td>
+<td>Ruby</td>
+<td>Jan xie</td>
+</tr>
+<tr>
+<td>ethereumH</td>
+<td>Haskell</td>
+<td>BlockApps</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B5%AC%EC%B6%95w-docker">이더리움 네트워크 구축(/w docker)</h3>
+<ul>
+<li>
+<p>테스트 할 클라이언트</p>
+<ul>
+<li>geth :
+<ul>
+<li>Go 언어를 기반 제작</li>
+<li>이더리움 풀노드를 구현/작동 위한 명령어 라인 인터페이스를 제공</li>
+<li>클라이언트 소트웨어중 가장 많이 사용</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Genesis.json 생성</p>
+<ul>
+<li>Geth를 이용해 Ethereum private Network를 구성하기 위해서는 처음 제네시스 블록을 생성해 주어야 하는데 Genesis.json에 제네시스 블록에 대한 설정</li>
+</ul>
+</li>
+<li>
+<p>Genesis.json config 정보</p>
+<ul>
+<li>
+<p>chainId : 현재 Chain을 식별하는 값</p>
+</li>
+<li>
+<p>homesteadBlock : 블록체인의 Release버전 (기본값은 0)</p>
+</li>
+<li>
+<p>difficulty : 이 블록의 nonce값을 발견하는 난이도 레벨을 설정. difficulty가 높을수록 블록 생성 속도가 느려진다.</p>
+</li>
+<li>
+<p>gasLimit : 체인 전체에 대한 블록 당 가스지출의 제한량을 설정</p>
+</li>
+<li>
+<p>alloc : Genesis 블록 생성 시 지정한 지갑에 할당된 양을 미리 채운다.</p>
+</li>
+<li>
+<p>nonce : PoW 알고리즘에 사용되는 nonce값</p>
+</li>
+<li>
+<p>mixhash : nonce값과 결합하여 이 블록에 충분한 양의 계산이 수행되었음을 증명하는 256bit의 해시값(mixHash는 해당 이더리움 체인 내에서의 난이도를 결정한)</p>
+</li>
+<li>
+<p>parentHash : 이전 block header의 Keccak 256bit 해시값</p>
+</li>
+<li>
+<p>timestamp : block을 생성할 때 Unix time함수의 결과값</p>
+</li>
+<li>
+<p>예제 :</p>
+<pre class="hljs"><code><div>{
+<span class="hljs-attr">"config"</span>: {
+<span class="hljs-attr">"chainId"</span>: <span class="hljs-number">4444</span>,
+<span class="hljs-attr">"homesteadBlock"</span>: <span class="hljs-number">0</span>,
+<span class="hljs-attr">"eip155Block"</span>: <span class="hljs-number">0</span>,
+<span class="hljs-attr">"eip158Block"</span>: <span class="hljs-number">0</span>
+},
+<span class="hljs-attr">"difficulty"</span>: <span class="hljs-string">"0x20000"</span>,
+<span class="hljs-attr">"gasLimit"</span>: <span class="hljs-string">"0x2fefd8"</span>,
+<span class="hljs-attr">"alloc"</span>: {},
+<span class="hljs-attr">"extraData"</span>: <span class="hljs-string">""</span>,
+<span class="hljs-attr">"nonce"</span>: <span class="hljs-string">"0x0000000000000000"</span>,
+<span class="hljs-attr">"mixhash"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,
+<span class="hljs-attr">"parentHash"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,
+<span class="hljs-attr">"timestamp"</span>: <span class="hljs-string">"0x00"</span>
+}
+</div></code></pre>
+</li>
+<li>
+<p>Gitlab 을 이용한 Image Build</p>
+<ul>
+<li>
+<p>Dockerfile</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">FROM</span> ubuntu
+
+<span class="hljs-keyword">ARG</span> DEBIAN_FRONTEND=noninteractive
+<span class="hljs-keyword">ENV</span> TZ=Asia/Seoul
+
+<span class="hljs-keyword">RUN</span><span class="bash"> apt-get update</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> apt-get install -y build-essential libgmp3-dev golang git tzdata</span>
+
+<span class="hljs-keyword">RUN</span><span class="bash"> git <span class="hljs-built_in">clone</span> https://github.com/ethereum/go-ethereum.git</span>
+<span class="hljs-comment">#RUN mkdir /home/go-ethereum</span>
+<span class="hljs-comment">#COPY go-ethereum /home/go-ethereum</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> go-ethereum</span>
+
+<span class="hljs-keyword">RUN</span><span class="bash"> git checkout v1.9.21</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> make geth</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> cp build/bin/geth /usr/<span class="hljs-built_in">local</span>/bin/</span>
+
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> /DATA_STORAGE</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> ./genesis.json /DATA_STORAGE</span>
+
+<span class="hljs-keyword">RUN</span><span class="bash"> geth --datadir <span class="hljs-string">"/DATA_STORAGE"</span> init /DATA_STORAGE/genesis.json</span>
+</div></code></pre>
+</li>
+<li>
+<p>Genesis.json</p>
+<pre class="hljs"><code><div>  {
+  <span class="hljs-attr">"config"</span>: {
+  <span class="hljs-attr">"chainId"</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">"homesteadBlock"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"eip150Block"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"eip150Hash"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,
+  <span class="hljs-attr">"eip155Block"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"eip158Block"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"byzantiumBlock"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"constantinopleBlock"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"petersburgBlock"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"istanbulBlock"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"ethash"</span>: {}
+  },
+  <span class="hljs-attr">"nonce"</span>: <span class="hljs-string">"0x0"</span>,
+  <span class="hljs-attr">"timestamp"</span>: <span class="hljs-string">"0x5e4a53b2"</span>,
+  <span class="hljs-attr">"extraData"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,
+  <span class="hljs-attr">"gasLimit"</span>: <span class="hljs-string">"0x47b760"</span>,
+  <span class="hljs-attr">"difficulty"</span>: <span class="hljs-string">"0x80000"</span>,
+  <span class="hljs-attr">"mixHash"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,
+  <span class="hljs-attr">"coinbase"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000000"</span>,
+  <span class="hljs-attr">"alloc"</span>: {
+  <span class="hljs-attr">"0000000000000000000000000000000000000088"</span>: {
+      <span class="hljs-attr">"balance"</span>: <span class="hljs-string">"0x200000000000000000000000000000000000000000000000000000000000000"</span>
+  }
+  },
+  <span class="hljs-attr">"number"</span>: <span class="hljs-string">"0x0"</span>,
+  <span class="hljs-attr">"gasUsed"</span>: <span class="hljs-string">"0x0"</span>,
+  <span class="hljs-attr">"parentHash"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>
+  }
+</div></code></pre>
+</li>
+<li>
+<p>Gitlab CI</p>
+<ul>
+<li>.gitlab-ci.yml</li>
+</ul>
+<pre class="hljs"><code><div>  <span class="hljs-attr">stages:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">build</span>
+
+  <span class="hljs-attr">build_stage:</span>
+  <span class="hljs-attr">image:</span> <span class="hljs-string">docker</span> 
+  <span class="hljs-attr">stage:</span> <span class="hljs-string">build</span>
+  
+  <span class="hljs-attr">services:</span> 
+      <span class="hljs-bullet">-</span> <span class="hljs-string">docker:dind</span>
+
+  <span class="hljs-attr">variables:</span>
+      <span class="hljs-attr">REGISTRY:</span> <span class="hljs-string">localhost:5000</span>
+      
+  <span class="hljs-attr">script:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">&gt; 
+          docker build --no-cache  
+          . -t $REGISTRY/test/ehereumtet:v20210917
+          -t $REGISTRY/test/ehereumtest:latest
+</span>      <span class="hljs-bullet">-</span> <span class="hljs-string">docker</span> <span class="hljs-string">push</span> <span class="hljs-string">$REGISTRY/test/ehereumtest</span> <span class="hljs-string">--all-tags</span>
+  <span class="hljs-attr">tags:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">test</span>  
+</div></code></pre>
+<ul>
+<li>
+<p>Pipline 정상 확인</p>
+<p><img src="/images/ethereum_setting/ethereum1.png" alt="ethereum1"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>서버스 Start(/w docker-compose)</p>
+<ul>
+<li>docker-compose.yml<pre class="hljs"><code><div><span class="hljs-attr">version:</span> <span class="hljs-string">'3.7'</span>
+
+<span class="hljs-attr">services:</span>
+<span class="hljs-attr">ethertest.node1 :</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">ethertest.node1</span>
+    <span class="hljs-attr">hostname:</span> <span class="hljs-string">ether-node1</span>
+    <span class="hljs-attr">command:</span> <span class="hljs-string">"geth --http --port 30305 --http.api eth,net --http.addr 0.0.0.0 --http.port 8545 --http.vhosts=* --syncmode fast --datadir /DATA_STORAGE --verbosity 3 --nodiscover --networkid 4444"</span>
+    <span class="hljs-attr">working_dir:</span> <span class="hljs-string">/DATA_STORAGE</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">test:5000/infra/ehereumtest:latest</span>
+    <span class="hljs-attr">tty :</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">ports:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-number">8545</span><span class="hljs-string">:8545</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-number">30305</span><span class="hljs-string">:30305</span>
+    <span class="hljs-attr">environment:</span>
+    <span class="hljs-attr">ENV:</span> <span class="hljs-string">ETHERNODE1</span>
+    <span class="hljs-attr">RPCPORT:</span> <span class="hljs-number">8545</span>
+    <span class="hljs-attr">PORT:</span> <span class="hljs-number">30305</span>
+
+</div></code></pre>
+</li>
+<li>docker-compose up<pre class="hljs"><code><div><span class="hljs-comment"># docker-compose up -d</span>
+Creating network <span class="hljs-string">"ether_default"</span> with the default driver
+Pulling ethertest.node1 (<span class="hljs-built_in">test</span>:5000/infra/ehereumtest:latest)...
+latest: Pulling from infra/ehereumtest
+35807b77a593: Already exists
+ef643d44c2ee: Pull complete
+7139af26c119: Downloading [=====================&gt;                             ]  91.91MB/211.7MB
+7137cd8e245b: Downloading [======================&gt;                            ]  87.05MB/191.5MB
+c226085421cb: Download complete
+f12e551582a5: Downloading [===================================&gt;               ]  71.37MB/100.5MB
+b3ba493cdcd3: Waiting
+c5bea69d9725: Waiting
+e760116f864e: Waiting
+4c75ff8e161e: Waiting
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>docker log 확인</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># docker-compose logs</span>
+ethertest.node1    | INFO [09-17|17:11:50.977] New <span class="hljs-built_in">local</span> node record                    seq=1 id=f6af76c5a9466c74 ip=127.0.0.1 udp=0 tcp=30305
+ethertest.node1    | INFO [09-17|17:11:50.977] Started P2P networking                   self=<span class="hljs-string">"enode://22e38f891e66fc616106479620cb979e3a1cd2a228f5d63ccaf538e8db991c78feb75a3b73e4f5cb87784f7ee06471c00c5a46076d4fb5092f07016aa8ff004b@127.0.0.1:30305?discport=0"</span>
+ethertest.node1    | INFO [09-17|17:11:50.978] IPC endpoint opened                      url=/DATA_STORAGE/geth.ipc
+ethertest.node1    | INFO [09-17|17:11:50.979] HTTP server started                      endpoint=[::]:8545 cors= vhosts=*
+</div></code></pre>
+</li>
+</ul>
+<h2 id="docker-monitoring">Docker Monitoring</h2>
+<ul>
+<li>
+<p>geth 기본 옵션인 Infrlux/Grafana 를 활용한 모니터링</p>
+<ul>
+<li>InfluxDB 외 옵션</li>
+</ul>
+<pre class="hljs"><code><div>Prometheus ((pull model)
+InfluxDB (push model)
+telegraf
+grafana
+datadog
+chronograf
+</div></code></pre>
+</li>
+<li>
+<p>InfluxDB/Grafna Start(/w docker-compose)</p>
+<pre class="hljs"><code><div><span class="hljs-attr">version:</span> <span class="hljs-string">'2'</span>
+<span class="hljs-attr">services:</span>
+<span class="hljs-attr">influxdb:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">"influxdb:1.7"</span>
+    <span class="hljs-attr">volumes:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">./influxdb:/var/lib/influxdb</span>
+    <span class="hljs-attr">ports:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">"8086:8086"</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">"8083:8083"</span>
+
+<span class="hljs-attr">grafana:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">"grafana/grafana:latest"</span>
+    <span class="hljs-attr">volumes:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">./grafana:/var/lib/grafana</span>
+    <span class="hljs-attr">ports:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">"3000:3000"</span>
+    <span class="hljs-attr">links:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">influxdb:database</span>
+</div></code></pre>
+</li>
+<li>
+<p>Influxdb database Create</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># docker exec -it grafana_influx_influxdb_1 influx</span>
+Connected to http://localhost:8086 version 1.7.11
+InfluxDB shell version: 1.7.11
+
+&gt; CREATE DATABASE geth
+</div></code></pre>
+</li>
+<li>
+<p>Command Line 에 InfluxDB 관련 추가</p>
+<pre class="hljs"><code><div>#  --metrics --metrics.influxdb --metrics.influxdb.endpoint http://localhost:8086 --metrics.influxdb.tags host=ether-node1 
+</div></code></pre>
+</li>
+<li>
+<p>Grafana 대시보드 구성</p>
+<p><img src="/images/ethereum_setting/ethereum2.png" alt="ethereum2"></p>
+<p><img src="/images/ethereum_setting/ethereum3.png" alt="ethereum3"></p>
+<p><img src="/images/ethereum_setting/ethereum4.png" alt="ethereum4"></p>
+</li>
+</ul>
+
+</body>
+</html>

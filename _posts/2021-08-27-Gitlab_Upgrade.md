@@ -126,4 +126,4 @@ tags:
   - gitlab-cicd runnner 설정 페이지 500 / gitlab-cicd 변수 로딩 에러
     - gitlab의 토큰 및 암호화 키 불일치로 발생는 이슈로 gitlab-secrets.json을 기존과 동일하게 셋팅하는 것으로 해결 가능
 
-- Rolling Upgrade 참고 URL : https://docs.gitlab.com/ee/update/
+- Rolling Upgrade 참고 URL : [https://docs.gitlab.com/ee/update/](https://docs.gitlab.com/ee/update/)

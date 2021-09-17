@@ -19,13 +19,13 @@ tags:
   ![alt text](/images/ElasticStack/elasticstack.png)  
 
   - Elatsic Stack 지금까지의 변경들
-    (http://kimjmin.net/2019/04/2019-04-elastic-stack-7-release/)
+    - [http://kimjmin.net/2019/04/2019-04-elastic-stack-7-release/](http://kimjmin.net/2019/04/2019-04-elastic-stack-7-release/)
 
   - Elastic Stack Version 공식 Blog
-    (https://www.elastic.co/kr/blog/category/releases)
+    - [https://www.elastic.co/kr/blog/category/releases](https://www.elastic.co/kr/blog/category/releases)
     
   - Elastic Stack History 
-   (https://www.elastic.co/kr/about/history-of-elasticsearch)
+    - [https://www.elastic.co/kr/about/history-of-elasticsearch](https://www.elastic.co/kr/about/history-of-elasticsearch)
 
 - Elastic Stack Data Flow
 
@@ -42,11 +42,11 @@ tags:
 - Logstash
   - 다양한 소스에서 동시에 데이터를 수집하여 변환한 후 자주 사용하는 저장소로 전달
   - Input  : Beats, Cloudwatch, Eventlog 등의 다양한 입력을 지원하여 데이터 수집
-       - Plugin 종류 (https://www.elastic.co/guide/en/logstash/current/input-plugins.html)
+       - Plugin 종류 [https://www.elastic.co/guide/en/logstash/current/input-plugins.html](https://www.elastic.co/guide/en/logstash/current/input-plugins.html)
   - Filter : 형식이나 복잡성에 상관없이 설정을 통해 데이터를 동적으로 변환
-         - Plugin 종류 (https://www.elastic.co/guide/en/logstash/current/filter-plugins.html)
+         - Plugin 종류 [https://www.elastic.co/guide/en/logstash/current/filter-plugins.html](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html)
   - Output : Elastic Search, Email, ECS, Kafka 등 원하는 저장소에 데이터를 전송
-       - Plugin 종류 (https://www.elastic.co/guide/en/logstash/current/output-plugins.html)
+       - Plugin 종류 [https://www.elastic.co/guide/en/logstash/current/output-plugins.html](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)
 
 - Kibana
   - ElasticSearch 에 저장 한 데이터를 구체적으로 시간화 해주는 도구
@@ -59,25 +59,25 @@ tags:
     - Packetbeat  : 
       - 데이터 실시간 접근 내용 분석
       - 응용 프로그램 서버간에 교환되는 트랜잭션에 대한 정보를 제공하는 네트워크 패킷 분석기
-      - 필드 : (https://www.elastic.co/guide/en/beats/packetbeat/current/exported-fields.html)
+      - 필드 : [https://www.elastic.co/guide/en/beats/packetbeat/current/exported-fields.html](https://www.elastic.co/guide/en/beats/packetbeat/current/exported-fields.html)
     - Filebeat    : 
       - 로그를 라인 별로 읽고 전달, 중단되는 경우 중단점 기억 재가동
       - 일반적인 형식의 로그 데이터의 간편한 수집, 파싱, 시각화 처리
-      - 모듈 : (https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html)
+      - 모듈 : [https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html)
     - Metricbeat  : 
       - 다양한 시스템 통계 수집, 전송(Linux, Windows, Mac Host...)
       - CPU 사용률, 메모리, 파일 시스템, 디스크 IO 및 Network IO 통계 제공
       - 다양한 서비스의 메트릭을 수집하는 내장 모듈 제공
-      - 모듈 : (https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html)
+      - 모듈 : [https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html)
       - 서버에서 실행중인 운영 체제 및 서비스에서 메트릭을 주기적으로 수집하는 서버 모니터링 에이전트
     - Winlogbeat : 
       - Windows 기반 인프라의 상태 확인
       - 보안로드, 장치 연결, 신규 소프트웨어 설치등 이벤트 로그를 정형화된 현식으로 수집
-      - 모듈 : (https://www.elastic.co/guide/en/beats/winlogbeat/current/winlogbeat-modules.html)
+      - 모듈 : [https://www.elastic.co/guide/en/beats/winlogbeat/current/winlogbeat-modules.html](https://www.elastic.co/guide/en/beats/winlogbeat/current/winlogbeat-modules.html)
     - Auditbeat :
       - Auditbeat 는 Linux 감사 프레임워크와 직접 통신하여 Audit와 동일한 데이터 수집, 전송
       - 파일 통합 모니터링(메타 데이터, 파일 내용으 ㅣ암호화 해쉬등)
-      - 모듈 : (https://www.elastic.co/guide/en/beats/auditbeat/current/auditbeat-modules.html)
+      - 모듈 : [https://www.elastic.co/guide/en/beats/auditbeat/current/auditbeat-modules.html](https://www.elastic.co/guide/en/beats/auditbeat/current/auditbeat-modules.html)
     - Hearbeat :
       - 서비스 동작, 가동 및 반응 시간 
       - LoadBalancing 적용된 서버 호스트를 DNS 분석 기접을 통해 모니터링
@@ -86,13 +86,13 @@ tags:
 - X-Pack Elastic Stack의 확장 Pack (유료)
   - Security, Alerting, Monitoring, Repoting, Graph, Machine Learing 등 확장된 기능 제공
   - Elastic Stack 6.8 / 7.1 Version 이후 Security 및 일부 X-Pack 을 무료로 사용 가능
-    - 요금 정보(https://www.elastic.co/kr/subscriptions)
+    - 요금 정보[https://www.elastic.co/kr/subscriptions](https://www.elastic.co/kr/subscriptions)
 
 - Elastic Cloud(유료)
   - AWS Elasticsearch Service 와 별도의 서비스로 Elastic 에서 제공 하는 모든 기능을 로드한 제품
 
 - Support Matrix
-  - https://www.elastic.co/kr/support/matrix#
+  - [https://www.elastic.co/kr/support/matrix#](https://www.elastic.co/kr/support/matrix#)
 
 ## 2. Elastic Search 특장점
 
@@ -160,7 +160,7 @@ tags:
   - 6.0.0 이후에는 Index 1개에 Type 1개가 되어 사실상 폐지 ♕ (7.0 이후 완전 폐지)
 
 ## 3. Elastic Search 설치 및 Data 처리
-  - Java 8 이상 필요(https://www.elastic.co/kr/support/matrix#matrix_jvm)
+  - Java 8 이상 필요[https://www.elastic.co/kr/support/matrix#matrix_jvm](https://www.elastic.co/kr/support/matrix#matrix_jvm)
 
     ```bash
     # java -version
@@ -604,13 +604,13 @@ tags:
       - 동일한 cluster.name 으로 구성시 자동으로 Cluster 가입
 
     - Master 선출
-(https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-discovery-settings.html)
+[https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-discovery-settings.html](https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-discovery-settings.html)
       - discovery.seed_hosts : Cluster 에서 Master Node 목록 , Host:Port 
       - discovery.seed_providers : Master Node 목록 주소를 얻을때 사용 하는 제공자 유형
       - cluster.initial_master_nodes : 초기 Master Node 설정
 
     - Cluster Node Upgrade
-  (https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html)
+  [https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html)
       - rolling Upgrade
         - 지원 Version : 5.6에서 6.8로, 6.8에서 7.4.1로 가능하며, 6.7 이하에서 직접 7.4.1로 업그레이드하려면 전체 클러스터를 다시 시작 해야합니다.
         - 사전 수행 
@@ -699,7 +699,7 @@ tags:
       - ES 6.7 이상 부터는 ILM(index lifecycle management)로 Index(Shard) Size 를 일정 Size 크기로 관리 할수 있어 해당 설정을 활용하는 것이 좋음
 
 ## 7. Elastic Search ILM
- (https://www.elastic.co/guide/en/elasticsearch/reference/7.4/getting-started-index-lifecycle-management.html)
+ [https://www.elastic.co/guide/en/elasticsearch/reference/7.4/getting-started-index-lifecycle-management.html](https://www.elastic.co/guide/en/elasticsearch/reference/7.4/getting-started-index-lifecycle-management.html)
 
   - ILM 이란 : 
     ElasticSearch 의 Index 의 수명 주기 관리
@@ -718,9 +718,9 @@ tags:
       - ILM 정책은 Hot, Warm, Cold 및 Delete의 네가지 기본 단계로 나뉘어 짐
       - 정책의 모든 단계를 정의 할 필요 없으며, 정의 되지 않은 단계는 생략 되어지며, 순서대로 단계를 실행
       - Hot-Warm-Cold 아키텍처의 경우 할당 작업을 통해 Hot Node에서 Warm Node로, Warm Node에서 Cold Node로 데이터를 이동 하도록 구성 할 수 있음
-      - rollover 작업은 Index간 크기 또는 기간을 관리하는데 사용(https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-rollover-action)
-      - 강제 병합 작업은 Index를 최적화 하는데 사용 할수 있음(https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-forcemerge-action)
-      - 고정 작업은 Cluster의 메모리 부담을 줄이는데 사용(https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-freeze-action)
+      - rollover 작업은 Index간 크기 또는 기간을 관리하는데 사용[(https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-rollover-action)](https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-rollover-action)
+      - 강제 병합 작업은 Index를 최적화 하는데 사용 할수 있음[(https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-forcemerge-action)](https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-forcemerge-action)
+      - 고정 작업은 Cluster의 메모리 부담을 줄이는데 사용[(https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-freeze-action)](https://www.elastic.co/guide/en/elasticsearch/reference/7.4/_actions.html#ilm-freeze-action)
   - ILM 기본 정책:
 
       ```java
@@ -832,7 +832,7 @@ tags:
         }
       }
       ```  
-    - ILM Hot - Warm - Cold ?(https://www.elastic.co/kr/blog/implementing-hot-warm-cold-in-elasticsearch-with-index-lifecycle-management)
+    - ILM Hot - Warm - Cold ?[(https://www.elastic.co/kr/blog/implementing-hot-warm-cold-in-elasticsearch-with-index-lifecycle-management)](https://www.elastic.co/kr/blog/implementing-hot-warm-cold-in-elasticsearch-with-index-lifecycle-management)
       - Hot :
         - 이 Index 는 다른 Index 보다 먼저 복구 되도록 Index 우선순위를 높은 값으로 설정     
         - 설정된 max_size, max_age(둘중 먼저 충족된 조건적용) Index 가 rollover 되고 새 Index 가 생성 되며, 이 새 Index는 정책을 처음부터 다시 시작 함
@@ -882,7 +882,7 @@ tags:
             - 예를 들어, 인덱스가 현재 hot 단계에 있고 warm 단계를 기다리는 경우, hot 단계에 대한 변경 사항은 해당 인덱스에 적용되지 않지만 warm 단계에 대한 변경 사항은 해당 단계에 진입할 때 적용
 
 ## 8. Elastic Search 보안
-(https://www.elastic.co/kr/blog/security-for-elasticsearch-is-now-free)
+[(https://www.elastic.co/kr/blog/security-for-elasticsearch-is-now-free)](https://www.elastic.co/kr/blog/security-for-elasticsearch-is-now-free)
 
   - Elastic Stack 6.8 , 7.1.0 이후 부터 보안 무료 제공
     - 암호화된 통신을 위한 TLS

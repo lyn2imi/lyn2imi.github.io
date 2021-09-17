@@ -31,8 +31,8 @@ tags:
 ### ec2.py 설정
 
   - ec2.py & ec2.ini Download
-    - https://raw.githubusercontent.com/ansible/ansible/stable-2.9/contrib/inventory/ec2.py  ( python3 )
-    - https://raw.githubusercontent.com/ansible/ansible/stable-2.9/contrib/inventory/ec2.ini
+    - [https://raw.githubusercontent.com/ansible/ansible/stable-2.9/contrib/inventory/ec2.py ( python3 )](https://raw.githubusercontent.com/ansible/ansible/stable-2.9/contrib/inventory/ec2.py)
+    - [https://raw.githubusercontent.com/ansible/ansible/stable-2.9/contrib/inventory/ec2.ini](https://raw.githubusercontent.com/ansible/ansible/stable-2.9/contrib/inventory/ec2.ini)
   - 환경 설정
     ```ini
     export AWS_ACCESS_KEY_ID='AK123'
@@ -110,6 +110,6 @@ tags:
   ```
 
 #### 기타 참고 URL : 
-  - https://ansible-docs.readthedocs.io/zh/stable-2.0/rst/intro_dynamic_inventory.html
-  - https://sodocumentation.net/ko/ansible/topic/3302/amazon-web-services%EC%99%80-%ED%95%A8%EA%BB%98-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
-  - https://linux.systemv.pe.kr/ansible-ec2-py-%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-dynamic-inventory-%ED%99%9C%EC%9A%A9/#ec2py
+  - [https://ansible-docs.readthedocs.io/zh/stable-2.0/rst/intro_dynamic_inventory.html](https://ansible-docs.readthedocs.io/zh/stable-2.0/rst/intro_dynamic_inventory.html)
+  - [https://sodocumentation.net/ko/ansible/topic/3302/amazon-web-services%EC%99%80-%ED%95%A8%EA%BB%98-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0](https://sodocumentation.net/ko/ansible/topic/3302/amazon-web-services%EC%99%80-%ED%95%A8%EA%BB%98-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
+  - [https://linux.systemv.pe.kr/ansible-ec2-py-%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-dynamic-inventory-%ED%99%9C%EC%9A%A9/#ec2py](https://linux.systemv.pe.kr/ansible-ec2-py-%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-dynamic-inventory-%ED%99%9C%EC%9A%A9/#ec2py)
