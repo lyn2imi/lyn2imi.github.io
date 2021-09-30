@@ -55,7 +55,12 @@ tags:
   - IOCP는 epoll과는 달리 유저 영역으로 직접 데이터를 가져오는 zero copy가 가능하다고 한다. 
     그렇지만 zero copy는 작은 패킷이 왔다 갔다하는 상황에서는 성능 저하와는 별 상관이 없고, 
     더 중요한건 context switching 오버헤드라고 한다.
+
+  - Linux epoll 의 경우 커널 영역의 데이터 스트림을 유저영역으로 복사하는 만큼 지연
+    IOCP 는 이벤트를 받아 이벤트 루틴이 깨어날 때 이미 데이터 스트림이 유저 영역에 있어 바로 작업 쓰레드로 넘겨 지연 없이 다음 이벤트를 기다릴 수 있음
   ```
 
 
-**출처 : https://its-fusion-blog.tistory.com/18**
+**출처**
+- https://its-fusion-blog.tistory.com/18
+- https://www.slideshare.net/sm9kr/iocp-vs-epoll-perfor
