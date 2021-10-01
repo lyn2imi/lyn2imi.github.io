@@ -41,6 +41,7 @@ tags:
     - 이벤트 통지(Event Notification) 입출력 처리
     - select의 단점을 보완하여 사용할 수 있도록 만든 I/O 통지 모델
     - 리눅스 커널 시스템 호출 확장 I/O 이벤트 알림 메커니즘
+    - 성능 (select < poll < epoll)
 
   - Epoll 잠점
     - 상태변화의 확인을 위한, 전체 파일 디스크립터를 대상으로 하는 반복문의 불필요
@@ -60,6 +61,11 @@ tags:
     IOCP 는 이벤트를 받아 이벤트 루틴이 깨어날 때 이미 데이터 스트림이 유저 영역에 있어 바로 작업 쓰레드로 넘겨 지연 없이 다음 이벤트를 기다릴 수 있음
   ```
 
+  |      | epoll        | IOCP                      |
+  | ---- | ------------ | ------------------------- |
+  | 생성 | epoll_create | CreateIoCompletionPort    |
+  | 연결 | epoll_ctl    | CreateIoCompletionPort    |
+  | 상태 | epoll_wait   | GetQueuedCompletionStatus |
 
 **출처**
 - https://its-fusion-blog.tistory.com/18
