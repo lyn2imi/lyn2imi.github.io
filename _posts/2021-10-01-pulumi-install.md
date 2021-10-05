@@ -1,5 +1,5 @@
 ---
-title: 
+title: Pulumi 를 활용한 AWS 구성(테스트중...)
 
 toc: true
 toc_sticky: true
@@ -12,6 +12,23 @@ tags:
 ---
 
 # pulumi
+
+ - Infrastructure as Code (IaC) 플랫폼
+ - 다양한 프로그래밍 언어 지원
+   ```
+   TypeScript
+   JavaScript
+   Python
+   Go
+   .NET
+   ```
+  - 다양한 클라우드 플랫폼 지원
+    ```
+    AWS
+    Google Cloud Platform (GCP)
+    Azure
+    Kubernetes
+    ```
 
 - Pulumi Install (/w Linux)
 
