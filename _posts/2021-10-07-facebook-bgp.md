@@ -1,5 +1,5 @@
 ---
-title: 페이스북 의 장애 원인으로 떠 오르는 BGP 란?
+title: 페이스북 의 장애 원인 BGP 란?
 
 toc: true
 toc_sticky: true
@@ -27,6 +27,7 @@ tags:
     - 서로다른 AS(autonomous system) 사이에서 사용 되는 라우팅 프로토콜
     - 대륙 또는 기업/ISP 간 AS 의 라우팅 정보를 교환하는 데 사용
     - TCP 포트 179번 사용, 유니캐스트 방식으로 교환
+    
     ```
     AS 란 : 
       - 독립적으로 운영(ISP 같은..) 하는 네트워크 
