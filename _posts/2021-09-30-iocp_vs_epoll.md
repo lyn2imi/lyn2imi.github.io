@@ -35,6 +35,7 @@ tags:
     - 하나의 I/O operation 마다 버퍼영역에 대한 page-lock/unlock이 필요
     - 하나의 I/O operation 마다 시스템 콜을 호출
 
+  **context switching이란? : 현재 진행하고 있는 Task(Process, Thread)의 상태를 저장하고 다음 진행할 Task의 상태 값을 읽어 적용하는 과정**
 ## Epoll
   
   - Epoll 이란

@@ -155,4 +155,31 @@ tags:
       ```
 
 
+#### redis.conf 정보
+
+
+loadmodule /path/to/my_module.so # 모듈 로드
+bind 127.0.0.1 # 내/외부 접근 IP, IPRange(불필요시 또는 전체 허용시 주석 처리)
+protected-mode yes # 보안 설정
+  ```
+    - Yes이고 bind가 지정되어 있으면 지정한 IP로만 접속할 수 있다.
+    - Yes이고 bind가 지정되지 않았으면(comment) 127.0.0.1 (local)만 접속할 수 있다.
+    - No이고 bind가 지정되어 있으면 지정한 IP만 접속할 수 있다.
+    - No이고 bind가 지정되지 않았으면(comment) 모든 IP로 접속할 수 있다.
+  ```
+port 6379 # LISTEN TCP 포트 (Default 6379)
+tcp-backlog # backlog 큐 사이즈 설정
+
+  ```
+    - SNY+ACK 보낼때 Backlog 큐에 저장 되었다가
+    - ACK 올때 Backlog 큐에서 제거 됩니다.
+    * 레디스의 backlog 크기는 syn_backlog , somaxconn 설정값을 넘을수 없음 
+    - 아래 Kernel 값도 변경 필요
+      net.core.somaxconn / net.ipv4.tcp_max_syn_backlog
+  ```
+timeout 0 # 연결 닫기 전 유휴 상태 시간(초)
+tcp-keepalive 300 # 클라이언트 종료시 keepalive 시간(초) (timeout 0 일때 만 사용)
+daemonize no # 프로세스 데몬(Back bround) 실행 여부
+
+
 **-참고 URL : http://redisgate.kr/redis/cluster/cluster_start.php**
