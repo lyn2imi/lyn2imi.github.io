@@ -246,13 +246,12 @@ tags:
    4. 모듈화
    5. 릴리즈의 간소화
 
-   
+
 ---
 ### 참고 자료
 1. 구글 공식 SRE 관련 자료URL
    1. URL : https://landing.google.com/sre/books/
-2. Gitlab 에 업로드 되어 있는 PDF 자료 참고
-3. 참고 URL
+2. 참고 URL
    1. https://en.wikipedia.org/wiki/Site_Reliability_Engineering
    2. https://tacogrammer.com/sre-site-reliability-engineering-%EB%A5%BC-%EC%9D%BD%EA%B3%A0%EB%82%98%EC%84%9C/
    3. http://internetplus.co.kr/wp/?p=505
